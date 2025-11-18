@@ -1,0 +1,142 @@
+{
+  "routes": {},
+  "applications": {
+    "echo": {
+      "displayName": "My Echo App",
+      "description": "Simple application that repeats user's message",
+      "endpoint": "http://host.docker.internal:5022/openai/deployments/echo/chat/completions"
+    },
+    "essay-assistant-gpt": {
+      "displayName": "Essay Assistant",
+      "displayVersion": "gpt-4o",
+      "description": "Essay Assistant. Always answers with essay.",
+      "endpoint": "http://host.docker.internal:5025/openai/deployments/essay-assistant-gpt/chat/completions",
+      "features": {
+        "configurationEndpoint": "http://host.docker.internal:5025/openai/deployments/essay-assistant-gpt/configuration"
+      }
+    },
+    "essay-assistant-sonnet": {
+      "displayName": "Essay Assistant",
+      "displayVersion": "sonnet-4",
+      "description": "Essay Assistant. Always answers with essay.",
+      "endpoint": "http://host.docker.internal:5026/openai/deployments/essay-assistant-sonnet/chat/completions",
+      "features": {
+        "configurationEndpoint": "http://host.docker.internal:5026/openai/deployments/essay-assistant-sonnet/configuration"
+      }
+    },
+    "buttons-sample": {
+      "displayName": "Button-Driven Application",
+      "description": "Demonstrates DIAL buttons capabilities",
+      "endpoint": "http://host.docker.internal:5027/openai/deployments/buttons-sample/chat/completions",
+      "features": {
+        "configurationEndpoint": "http://host.docker.internal:5027/openai/deployments/buttons-sample/configuration"
+      }
+    },
+    "microwave-rag": {
+      "displayName": "Microwave RAG App",
+      "description": "Simple RAG App to work with microwave manual",
+      "endpoint": "http://host.docker.internal:5028/openai/deployments/microwave-rag/chat/completions"
+    },
+    "dial-rag": {
+      "displayName": "DIAL RAG",
+      "description": "The Dial RAG answers user questions using information from the documents provided by user. It supports the following document formats: PDF, DOC/DOCX, PPT/PPTX, TXT and other plain text formats such as code files. Also, it supports PDF and JPEG, PNG and other image formats for the image understanding.",
+      "endpoint": "http://dial-rag:5000/openai/deployments/dial-rag/chat/completions",
+      "inputAttachmentTypes": [
+        "application/pdf",
+        "application/msword",
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        "application/vnd.ms-powerpoint",
+        "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+        "text/plain",
+        "image/jpeg",
+        "image/png"
+      ]
+    },
+    "agent-sample": {
+      "displayName": "Agent Sample",
+      "description": "Simple Agent, that is able to make RAG, generate Essays and Pictures, and provides final output converted to speech",
+      "endpoint": "http://host.docker.internal:5030/openai/deployments/agent-sample/chat/completions"
+    }
+  },
+  "models": {
+    "gpt-4o": {
+      "displayName": "GPT 4o",
+      "overrideName": "gpt-4o",
+      "endpoint": "http://adapter-dial-openai:5000/openai/deployments/gpt-4o/chat/completions",
+      "iconUrl": "http://localhost:3001/gpt4.svg",
+      "type": "chat",
+      "upstreams": [
+        {
+          "endpoint": "https://api.openai.com/v1/chat/completions",
+          "key": "${YOUR_OPENAI_API_KEY}"
+        }
+      ]
+    },
+    "claude-sonnet-4": {
+      "displayName": "Sonnet 4",
+      "endpoint": "http://adapter-dial-bedrock:5000/openai/deployments/claude-sonnet-4-20250514/chat/completions",
+      "iconUrl": "http://localhost:3001/anthropic.svg",
+      "type": "chat",
+      "upstreams": [
+        {
+          "key": "${YOUR_ANTHROPIC_API_KEY}"
+        }
+      ]
+    },
+    "gemini-2.5-flash": {
+      "displayName": "Gemini 2.5 Flash",
+      "type": "chat",
+      "endpoint": "http://adapter-dial-vertexai:5000/openai/deployments/gemini-2.5-flash/chat/completions",
+      "iconUrl": "http://localhost:3001/Gemini-Pro-Vision.svg",
+      "upstreams": [
+        {
+          "key": "${YOUR_GEMINI_API_KEY}"
+        }
+      ]
+    },
+    "text-embedding-3-large": {
+      "type": "embedding",
+      "overrideName": "text-embedding-3-large",
+      "endpoint": "http://adapter-dial-openai:5000/openai/deployments/text-embedding-3-large/embeddings",
+      "upstreams": [
+        {
+          "endpoint": "https://api.openai.com/v1/embeddings",
+          "key": "${YOUR_OPENAI_API_KEY}"
+        }
+      ]
+    },
+    "dall-e-3": {
+      "type": "chat",
+      "endpoint": "http://adapter-dial-openai:5000/openai/deployments/dall-e-3/chat/completions",
+      "overrideName": "dall-e-3",
+      "upstreams": [
+        {
+          "endpoint": "https://api.openai.com/v1/images/generations",
+          "key": "${YOUR_OPENAI_API_KEY}"
+        }
+      ]
+    },
+    "gpt-4o-mini-tts": {
+      "type": "chat",
+      "endpoint": "http://adapter-dial-openai:5000/openai/deployments/gpt-4o-mini-tts/chat/completions",
+      "overrideName": "gpt-4o-mini-tts",
+      "upstreams": [
+        {
+          "endpoint": "https://api.openai.com/v1/audio/speech",
+          "key": "${YOUR_OPENAI_API_KEY}"
+        }
+      ]
+    }
+  },
+  "keys": {
+    "dial_api_key": {
+      "project": "TEST-PROJECT",
+      "role": "default"
+    }
+  },
+  "roles": {
+    "default": {
+      "limits": {}
+    }
+  }
+}
