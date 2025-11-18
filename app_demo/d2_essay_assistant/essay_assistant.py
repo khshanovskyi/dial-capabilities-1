@@ -57,38 +57,6 @@ class EssayAssistantApplication(ChatCompletion):
                     if delta and delta.content:
                         choice.append_content(delta.content)
 
-            # choice.set_form_schema(
-            #     {
-            #         "type": "object",
-            #         "dial:chatMessageInputDisabled": True,
-            #         "properties": {
-            #             "agreement_button": {
-            #                 "description": "Indicate user agreement with the privacy policy",
-            #                 "type": "number",
-            #                 "dial:widget": "buttons",
-            #                 "oneOf": [
-            #                     {
-            #                         "const": 1,
-            #                         "title": "Agree",
-            #                         "dial:widgetOptions": {
-            #                             "confirmationMessage": "Are you sure you agree with the privacy policy?",
-            #                             "submit": True
-            #                         }
-            #                     },
-            #                     {
-            #                         "const": 2,
-            #                         "title": "Decline",
-            #                         "dial:widgetOptions": {
-            #                             "confirmationMessage": "Are you sure you decline the privacy policy?",
-            #                             "submit": True
-            #                         }
-            #                     }
-            #                 ]
-            #             }
-            #         }
-            #     }
-            # )
-
     async def configuration(self, request: ConfigurationRequest) -> Union[ConfigurationResponse, dict]:
         return {
             "type": "object",
