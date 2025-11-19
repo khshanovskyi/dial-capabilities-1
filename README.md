@@ -540,16 +540,18 @@ DIAL has its own powerful universal [DIAL RAG application](https://github.com/ep
         }
     ```
 2. Add `dial-rag` to [docker-compose](docker-compose.yml):
-    ```yaml
-      dial-rag:
-        image: epam/ai-dial-rag:development
-        platform: linux/amd64
-        environment:
-          DIAL_URL: http://core:8080
-          DIAL_API_KEY: dial_api_key
-          DIAL_RAG_URL: ${DIAL_RAG_URL:-http://host.docker.internal:5000}
-          DIAL_RAG__CONFIG_PATH: /opt/dial-rag/embedding.yaml
-    ```
+```yaml
+  dial-rag:
+    image: epam/ai-dial-rag:development
+    #platform: linux/amd64
+    environment:
+      DIAL_URL: http://core:8080
+      DIAL_API_KEY: dial_api_key
+      DIAL_RAG_URL: ${DIAL_RAG_URL:-http://host.docker.internal:5000}
+      DIAL_RAG__CONFIG_PATH: /app/config/embedding.yaml
+    volumes:
+      - ./dial-rag/embedding.yaml:/app/config/embedding.yaml:ro
+```
 3. Restart whole docker compose
 4. Test DIAL RAG with [microwave_manual.txt](app_demo/d4_custom_rag/microwave_manual.txt) (or any other file). The file will be indexed once and will 
     ```
