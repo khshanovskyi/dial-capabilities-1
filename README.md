@@ -167,11 +167,11 @@ and applications, it is okay, we will create them with next task.**
         }
     ```
 2. Replace `${YOUR_OPENAI_API_KEY}` with your OpenAI API Key. Here you create one, if you don't have 👉 https://platform.openai.com/api-keys
-> DIAL Core cannot work directly with different models, we have adapters for different vendors. 
-> In core configuration we have added the `endpoint` where the model will be accessible `http://adapter-dial-openai:5000/openai/deployments/gpt-4o/chat/completions` 
-> and you see that link is to `adapter-dial-openai:5000`, it is an adapter service that will need to add to [docker-compose](docker-compose.yml). 
-> In `upstreams` we provided routing endpoint, where requests from `http://adapter-dial-openai:5000/openai/deployments/gpt-4o/chat/completions` should go, 
-> and `key` is OpenAI API Key.
+    > DIAL Core cannot work directly with different models, we have adapters for different vendors. 
+    > In core configuration we have added the `endpoint` where the model will be accessible `http://adapter-dial-openai:5000/openai/deployments/gpt-4o/chat/completions` 
+    > and you see that link is to `adapter-dial-openai:5000`, it is an adapter service that will need to add to [docker-compose](docker-compose.yml). 
+    > In `upstreams` we provided routing endpoint, where requests from `http://adapter-dial-openai:5000/openai/deployments/gpt-4o/chat/completions` should go, 
+    > and `key` is OpenAI API Key.
 3. Add `ai-dial-adapter-openai` to [docker-compose](docker-compose.yml):
     ```yaml
       adapter-dial-openai:
@@ -182,7 +182,22 @@ and applications, it is okay, we will create them with next task.**
           LOG_LEVEL: "INFO"
     ```
 4. Restart whole docker compose
-5. Test it
+5. Test it In DIAL Chat
+6. s
+```
+curl --location 'http://localhost:8080/openai/deployments/gpt-4o/chat/completions?api-version=2024-08-06' \
+--header 'Api-Key: dial_api_key' \
+--header 'Content-Type: application/json' \
+--data '{
+    "stream": false,
+    "messages": [
+        {
+            "role": "user",
+            "content": "hi"
+        }
+    ]
+}'
+```
 
 <details><summary>Result samples</summary>
 
@@ -282,7 +297,22 @@ and applications, it is okay, we will create them with next task.**
 2. Open [app_gpt.py](app_demo/d2_essay_assistant/app_gpt.py) and run it.
 3. Restart DIAL Core service
 4. Open in browser [local DIAL Chat](http://localhost:3000/marketplace) and you should see there `Essay Assistant`
-5. Test Essay Assistant app
+5. Test Essay Assistant app in DIAL Chat
+6. Also, you can test it with request to Core:
+    ```
+    curl --location 'http://localhost:8080/openai/deployments/essay-assistant-gpt/chat/completions' \
+    --header 'Api-Key: dial_api_key' \
+    --header 'Content-Type: application/json' \
+    --data '{
+        "stream": false,
+        "messages": [
+            {
+                "role": "user",
+                "content": "About microwave"
+            }
+        ]
+    }'
+    ```
 
 <details><summary>Result samples</summary>
 
@@ -463,15 +493,15 @@ Let's add Embedding model:
 2. Replace `${YOUR_OPENAI_API_KEY}` with your OpenAI API Key.
 3. Restart DIAL Core service
 4. Test it:
-```json
-curl --location 'http://localhost:8080/openai/deployments/text-embedding-3-large/embeddings?api-version=2024-02-01' \
---header 'Api-Key: dial_api_key' \
---header 'Content-Type: application/json' \
---data '{
-    "input": "hello",
-    "dimensions": 10
-}'
-```
+    ```
+    curl --location 'http://localhost:8080/openai/deployments/text-embedding-3-large/embeddings?api-version=2024-02-01' \
+    --header 'Api-Key: dial_api_key' \
+    --header 'Content-Type: application/json' \
+    --data '{
+        "input": "hello",
+        "dimensions": 10
+    }'
+    ```
 <details><summary>Result sample</summary>
 
 ![Embeddings](screenshots/result-embedding.png)
