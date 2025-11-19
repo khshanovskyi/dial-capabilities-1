@@ -101,15 +101,18 @@ class AgentSample:
         choice.set_state(self.state)
 
         # Make Audion from final response from LLM
+        stage_summary = StageProcessor.open_stage(choice, "Summary audio generation")
+        stage_summary.append_content(f"## Content to Audio:\n\r{content}\n\r## Result:\n")
         audio_result = await client.chat.completions.create(
             messages=[{"role": "user", "content": content}],
             deployment_name='gpt-4o-mini-tts',
         )
-        choice.add_attachment(
-            Attachment(
-                **audio_result.choices[0].message.custom_content.attachments[0].dict(exclude_none=True)
-            )
+        audio_attachment = Attachment(
+            **audio_result.choices[0].message.custom_content.attachments[0].dict(exclude_none=True)
         )
+        stage_summary.add_attachment(audio_attachment)
+        StageProcessor.close_stage_safely(stage_summary)
+        choice.add_attachment(audio_attachment)
 
         return assistant_message
 
