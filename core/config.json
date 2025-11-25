@@ -51,11 +51,6 @@
         "image/jpeg",
         "image/png"
       ]
-    },
-    "agent-sample": {
-      "displayName": "Agent Sample",
-      "description": "Simple Agent, that is able to make RAG, generate Essays and Pictures, and provides final output converted to speech",
-      "endpoint": "http://host.docker.internal:5030/openai/deployments/agent-sample/chat/completions"
     }
   },
   "models": {
