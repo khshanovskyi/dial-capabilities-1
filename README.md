@@ -25,7 +25,6 @@
 - [10. Add Embedding model](#10-Add-Embedding-model)
 - [11. Add Custom RAG](#11-Add-Custom-RAG)
 - [12. Add DIAL RAG](#12-Add-DIAL-RAG)
-- [13. Add Agent](#13-Add-Agent)
 
 ---
 
