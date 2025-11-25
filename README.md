@@ -183,20 +183,20 @@ and applications, it is okay, we will create them with next task.**
 4. Restart whole docker compose
 5. Test it In DIAL Chat
 6. Test it with request from terminal
-```
-curl --location 'http://localhost:8080/openai/deployments/gpt-4o/chat/completions?api-version=2024-08-06' \
---header 'Api-Key: dial_api_key' \
---header 'Content-Type: application/json' \
---data '{
-    "stream": false,
-    "messages": [
-        {
-            "role": "user",
-            "content": "hi"
-        }
-    ]
-}'
-```
+    ```
+    curl --location 'http://localhost:8080/openai/deployments/gpt-4o/chat/completions?api-version=2024-08-06' \
+    --header 'Api-Key: dial_api_key' \
+    --header 'Content-Type: application/json' \
+    --data '{
+        "stream": false,
+        "messages": [
+            {
+                "role": "user",
+                "content": "hi"
+            }
+        ]
+    }'
+    ```
 
 [More about DIAl OpenAI Adapter](https://github.com/epam/ai-dial-adapter-openai)
 
@@ -239,7 +239,22 @@ curl --location 'http://localhost:8080/openai/deployments/gpt-4o/chat/completion
           LOG_LEVEL: "DEBUG"
     ```
 4. Restart whole docker compose
-5. Test it
+5. Test it In DIAL Chat
+6. Test it with request from terminal
+    ```
+    curl --location 'http://localhost:8080/openai/deployments/claude-sonnet-4/chat/completions' \
+    --header 'Api-Key: dial_api_key' \
+    --header 'Content-Type: application/json' \
+    --data '{
+        "stream": false,
+        "messages": [
+            {
+                "role": "user",
+                "content": "hi"
+            }
+        ]
+    }'
+    ```
 
 [More about DIAl Bedrock Adapter](https://github.com/epam/ai-dial-adapter-bedrock)
 
@@ -276,7 +291,22 @@ curl --location 'http://localhost:8080/openai/deployments/gpt-4o/chat/completion
           LOG_LEVEL: "DEBUG"
     ```
 4. Restart whole docker compose 
-5. Test it
+5. Test it In DIAL Chat
+6. Test it with request from terminal
+    ```
+    curl --location 'http://localhost:8080/openai/deployments/gemini-2.5-flash/chat/completions' \
+    --header 'Api-Key: dial_api_key' \
+    --header 'Content-Type: application/json' \
+    --data '{
+        "stream": false,
+        "messages": [
+            {
+                "role": "user",
+                "content": "hi"
+            }
+        ]
+    }'
+    ```
 
 [More about DIAl VertexAI Adapter](https://github.com/epam/ai-dial-adapter-bedrock)
 
