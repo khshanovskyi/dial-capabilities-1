@@ -99,28 +99,6 @@
           "key": "${YOUR_OPENAI_API_KEY}"
         }
       ]
-    },
-    "dall-e-3": {
-      "type": "chat",
-      "endpoint": "http://adapter-dial-openai:5000/openai/deployments/dall-e-3/chat/completions",
-      "overrideName": "dall-e-3",
-      "upstreams": [
-        {
-          "endpoint": "https://api.openai.com/v1/images/generations",
-          "key": "${YOUR_OPENAI_API_KEY}"
-        }
-      ]
-    },
-    "gpt-4o-mini-tts": {
-      "type": "chat",
-      "endpoint": "http://adapter-dial-openai:5000/openai/deployments/gpt-4o-mini-tts/chat/completions",
-      "overrideName": "gpt-4o-mini-tts",
-      "upstreams": [
-        {
-          "endpoint": "https://api.openai.com/v1/audio/speech",
-          "key": "${YOUR_OPENAI_API_KEY}"
-        }
-      ]
     }
   },
   "keys": {
