@@ -4,7 +4,7 @@
     <p align="center">
         <p align="center">
         <a href="https://dialx.ai/">
-          <img src="https://dialx.ai/dialx_logo.svg" alt="About DIALX">
+          <img src="https://dialx.ai/logo/dialx_logo.svg" alt="About DIALX">
         </a>
     </p>
 <h4 align="center">
@@ -98,6 +98,7 @@ services:
       'aidial.config.files': '["/opt/config/config.json"]'
       'aidial.storage.overrides': '{ "jclouds.filesystem.basedir": "data" }'
       'aidial.redis.singleServerConfig.address': 'redis://redis:6379'
+      'aidial.config.reload': 3000
     depends_on:
       - redis
     volumes:
